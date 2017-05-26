@@ -23,7 +23,7 @@ class HttpHandler(BaseHTTPRequestHandler):
             goku.voice('effect')
         elif file_content == "goku_vote":
             goku.vote('goku')
-        elif fle_content == "freeza_vote":
+        elif file_content == "freeza_vote":
             goku.vote('freeza')
         else :
             print(file_content)
