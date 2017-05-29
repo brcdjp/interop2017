@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 
-import BaseHTTPServer
-from BaseHTTPServer import BaseHTTPRequestHandler
+from BaseHTTPServer import HTTPServer,BaseHTTPRequestHandler
+from SocketServer import ThreadingMinIn
+from threading import Thread
 import goku
 
 ipaddr = '172.24.197.208'
+
 
 class HttpHandler(BaseHTTPRequestHandler):
     def do_POST(self):
@@ -40,6 +42,9 @@ class HttpHandler(BaseHTTPRequestHandler):
         f.close()
         return
 
+class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
+    """ """  
+
 if __name__=="__main__":
-    httpd = BaseHTTPServer.HTTPServer((ipaddr, 80),HttpHandler)
+    httpd = ThreadedHTTPServer((ipaddr, 80),HttpHandler)
     httpd.serve_forever()
