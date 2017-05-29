@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from BaseHTTPServer import HTTPServer,BaseHTTPRequestHandler
-from SocketServer import ThreadingMinIn
+from SocketServer import ThreadingMixIn
 from threading import Thread
 import goku
 
