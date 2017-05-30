@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import wiringpi as pi
 import requests
 import time
