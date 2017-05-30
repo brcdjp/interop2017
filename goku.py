@@ -1,4 +1,5 @@
 import json
+
 def goku():
     print("goku")
     return
@@ -10,7 +11,7 @@ def voice(cmd):
     print(cmd+"voice\n")
 
 def vote(cmd):
-    json_file = '/home/ubuntu/interop_demo/result.json'
+    json_file = '/home/pi/interop2017/result.json'
     with open(json_file) as data_file:
         data = json.load(data_file)
     if cmd == 'goku':
@@ -20,5 +21,6 @@ def vote(cmd):
     print(data)
     with open(json_file,'w') as outfile:
         json.dump(data,outfile)
+
 if __name__=="__main__":
     goku()

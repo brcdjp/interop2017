@@ -5,8 +5,8 @@ from SocketServer import ThreadingMixIn
 from threading import Thread
 import goku
 
-ipaddr = '172.24.197.208'
-
+ipaddr = '172.24.182.147'
+json_file = '/home/pi/interop2017/result.json'
 
 class HttpHandler(BaseHTTPRequestHandler):
     def do_POST(self):
@@ -34,7 +34,7 @@ class HttpHandler(BaseHTTPRequestHandler):
         return
 
     def do_GET(self):
-        f = open("/home/ubuntu/interop_demo/result.json")
+        f = open(json_file)
         self.send_response(200)
         self.send_header('content-type','text/html')
         self.end_headers()
