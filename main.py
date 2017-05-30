@@ -5,7 +5,7 @@ from SocketServer import ThreadingMixIn
 from threading import Thread
 import goku
 
-ipaddr = '172.24.182.147'
+ipaddr = '172.24.182.43'
 json_file = '/home/pi/interop2017/result.json'
 
 class HttpHandler(BaseHTTPRequestHandler):

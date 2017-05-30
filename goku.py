@@ -1,14 +1,29 @@
 import json
+import wiringpi as pi
+import time
+import os
+from pygame import mixer as mi
 
 def goku():
     print("goku")
     return
 
 def led(cmd):
-    print(cmd + "led")
+    LED_PIN = 4
+    flash_time = 100
+    pi.wiringPiSetupGpio()
+    pi.pinMode(LED_PIN, pi.OUTPUT)
+    for i in range(flash_time):
+        pi.digitalWrite(LED_PIN, pi.HIGH)
+        time.sleep(0.05)
+        pi.digitalWrite(LED_PIN, pi.LOW)
 
 def voice(cmd):
-    print(cmd+"voice\n")
+    mp3_path = '/home/pi/sound'
+    files = os.listdir('/home/pi/sound')
+    mi.init()
+    mi.music.load(mp3_path+'/'+files[0])
+    mi.music.play()
 
 def vote(cmd):
     json_file = '/home/pi/interop2017/result.json'
