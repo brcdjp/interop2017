@@ -42,5 +42,6 @@ class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
     """ """  
 
 if __name__=="__main__":
+    goku.init()
     httpd = ThreadedHTTPServer((ipaddr, 80),HttpHandler)
     httpd.serve_forever()
