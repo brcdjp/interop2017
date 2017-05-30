@@ -8,10 +8,12 @@ def goku():
     print("goku")
     return
 
+def init():
+    pi.wiringPiSetupGpio()
+
 def led(cmd):
     LED_PIN = 4
     flash_time = 100
-    pi.wiringPiSetupGpio()
     pi.pinMode(LED_PIN, pi.OUTPUT)
     for i in range(flash_time):
         pi.digitalWrite(LED_PIN, pi.HIGH)
