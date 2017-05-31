@@ -3,6 +3,7 @@ import wiringpi as pi
 import time
 import os
 from pygame import mixer as mi
+import random
 
 def goku():
     print("goku")
@@ -24,7 +25,10 @@ def voice(cmd):
     mp3_path = '/home/pi/sound'
     files = os.listdir('/home/pi/sound')
     mi.init()
-    mi.music.load(mp3_path+'/'+files[0])
+    if cmd == 'effect':
+        mi.music.load(mp3_path+'/koukaon_kamehameha.wav')
+    else:
+        mi.music.load(mp3_path+'/'+random.choice(files))
     mi.music.play()
 
 def vote(cmd):
@@ -41,3 +45,4 @@ def vote(cmd):
 
 if __name__=="__main__":
     goku()
+    
