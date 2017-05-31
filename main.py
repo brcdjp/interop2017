@@ -5,7 +5,6 @@ from SocketServer import ThreadingMixIn
 from threading import Thread
 import goku
 
-ipaddr = '172.24.182.43'
 json_file = '/home/pi/interop2017/result.json'
 
 class HttpHandler(BaseHTTPRequestHandler):
@@ -43,5 +42,5 @@ class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
 
 if __name__=="__main__":
     goku.init()
-    httpd = ThreadedHTTPServer((ipaddr, 80),HttpHandler)
+    httpd = ThreadedHTTPServer(("", 80),HttpHandler)
     httpd.serve_forever()
