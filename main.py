@@ -13,9 +13,9 @@ class HttpHandler(BaseHTTPRequestHandler):
         file_content = self.rfile.read(content_length)
 
         if file_content == "led":
-            goku.led()
+            goku.led(file_content)
         elif file_content == "voice":
-            goku.voice()
+            goku.voice(file_content)
         elif file_content == "effect":
             goku.voice('effect')
         elif file_content == "goku_vote":
