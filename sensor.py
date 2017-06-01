@@ -5,9 +5,8 @@ import requests
 import time
 
 
-st2host = '172.24.182.43'
+st2host = 'bwc'
 
-DURING = 2
 CATCH_DISTANCE = 5
 TRIG_PIN = 23
 ECHO_PIN = 24
@@ -27,7 +26,7 @@ def main():
         send()
     else:
         pass
-    time.sleep(1)
+    time.sleep(0.01)
 
 def measure():
     pi.digitalWrite( TRIG_PIN, pi.HIGH )
@@ -42,7 +41,7 @@ def measure():
 def send():
     api_key =''
     response = requests.post(
-        'http://'+st2host+'/goku',
+        'http://'+st2host+'/api/v1/webhooks/interop2017',
         headers={'St2-Api-Key':api_key, 'Content-Type':'application/json'},
         data={'vote':'goku'})
 
