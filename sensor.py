@@ -4,8 +4,8 @@ import wiringpi as pi
 import requests
 import time
 
-
 st2host = 'bwc'
+api_key =''
 
 CATCH_DISTANCE = 5
 TRIG_PIN = 23
@@ -24,6 +24,7 @@ def main():
     print ("Distance: ", distance)
     if distance < CATCH_DISTANCE:
         send()
+        time.sleep(1)
     else:
         pass
     time.sleep(0.01)
@@ -39,7 +40,6 @@ def measure():
     return (( sigon - sigoff ) * 34000) / 2
 
 def send():
-    api_key =''
     response = requests.post(
         'http://'+st2host+'/api/v1/webhooks/interop2017',
         headers={'St2-Api-Key':api_key, 'Content-Type':'application/json'},
@@ -48,3 +48,4 @@ def send():
 if __name__=='__main__':
     while True:
         main()
+        
