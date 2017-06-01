@@ -26,7 +26,7 @@ def voice(cmd):
     files = os.listdir('/home/pi/sound')
     mi.init()
     if cmd == 'effect':
-        mi.music.load(mp3_path+'/koukaon_kamehameha.wav')
+        mi.music.load(mp3_path+'/koukaon_kamehameha.mp3')
     else:
         mi.music.load(mp3_path+'/'+random.choice(files))
     mi.music.play()
