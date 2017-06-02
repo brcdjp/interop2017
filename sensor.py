@@ -3,6 +3,10 @@
 import wiringpi as pi
 import requests
 import time
+import urllib3
+from urllib3.exceptions import InsecureRequestWarning
+urllib3.disable_warnings(InsecureRequestWarning)
+
 
 st2host = 'bwc'
 api_key =''
@@ -41,9 +45,9 @@ def measure():
 
 def send():
     response = requests.post(
-        'http://'+st2host+'/api/v1/webhooks/interop2017',
+        'https://'+st2host+'/api/v1/webhooks/interop2017',
         headers={'St2-Api-Key':api_key, 'Content-Type':'application/json'},
-        data={'vote':'goku'})
+        json={'vote':'goku'})
 
 if __name__=='__main__':
     while True:
