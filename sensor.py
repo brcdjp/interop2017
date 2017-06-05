@@ -47,7 +47,7 @@ def send():
     response = requests.post(
         'https://'+st2host+'/api/v1/webhooks/interop2017',
         headers={'St2-Api-Key':api_key, 'Content-Type':'application/json'},
-        json={'vote':'goku'})
+        json={'vote':'goku'},verify=False)
 
 if __name__=='__main__':
     while True:
