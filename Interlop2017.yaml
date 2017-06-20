@@ -1,0 +1,76 @@
+---
+version: '2.0'
+
+default.interop2017:
+  input:
+    - cmd
+  tasks:
+    VOICE:
+      # [655, 26]
+      action: core.http
+      input:
+        url: 'http://<% $.cmd %>/'
+        method: 'POST'
+        body: 'voice'
+      on-success:
+        - LED
+      on-error:
+        - ERROR
+    LED:
+      # [585, 128]
+      action: core.http
+      input:
+        url: 'http://<% $.cmd %>/'
+        method: 'POST'
+        body: 'led'
+      on-success:
+        - EFFECT
+      on-error:
+        - ERROR
+    EFFECT:
+      # [485, 230]
+      action: core.http
+      input:
+        url: 'http://<% $.cmd %>/'
+        method: 'POST'
+        body: 'effect'
+      on-success:
+        - VOTE
+      on-error:
+        - ERROR
+    VOTE:
+      # [345, 332]
+      action: core.http
+      input:
+        url: 'http://freeza/'
+        method: 'POST'
+        body: '<% $.cmd %>_vote'
+      on-success:
+        - RESULT
+      on-error:
+        - ERROR
+    RESULT:
+      # [245, 434]
+      action: core.http
+      input:
+        url: 'http://freeza/'
+      publish:
+        results: '<% task(RESULT).result.body %>'
+      on-success:
+        - ToSlack
+      on-error:
+        - ERROR
+    ToSlack:
+      # [105, 526]
+      action: slack.chat.postMessage
+      input:
+        channel: test
+        text: "Thank you for voting <% $.cmd %> !!\n Voting result ; <% $.results %>"
+      on-error:
+        - ERROR
+    ERROR:
+      # [625, 638]
+      action: slack.chat.postMessage
+      input:
+        channel: test
+        text: "Error!!"

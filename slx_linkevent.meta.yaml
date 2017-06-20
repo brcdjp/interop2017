@@ -1,0 +1,31 @@
+---
+name: slx_linkevent
+enabled: true
+entry_point: 'workflows/slx_linkevent.yaml'
+notify: {}
+pack: default
+parameters:
+    cmd:
+        required: true
+        type: string
+    context:
+        default: {}
+        description: Additional workflow inputs.
+        type: object
+    skip_notify:
+        default: []
+        description: List of tasks to skip notifications for.
+        type: array
+    task:
+        description: The name of the task to run for reverse workflow.
+        type: string
+    workflow:
+        description: The name of the workflow to run if the entry_point is a workbook
+            of many workflows. The name should be in the format "<pack_name>.<action_name>.<workflow_name>".
+            If entry point is a workflow or a workbook with a single workflow, the
+            runner will identify the workflow automatically.
+        type: string
+ref: default.slx_linkevent
+runner_type: mistral-v2
+tags: []
+uid: action:default:slx_linkevent
